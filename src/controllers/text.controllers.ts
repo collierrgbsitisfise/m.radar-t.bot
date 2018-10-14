@@ -5,9 +5,29 @@ class TextControllersHanlder {
         this.bot = bot;    
     }
 
-    pingHandler(msg:any): void {
+    async pingHandler(msg:any): Promise<any> {
         const chatId = msg.chat.id; 
-        this.bot.sendMessage(chatId, 'pong');
+        await this.bot.sendMessage(chatId, 'pong');
+        await this.bot.sendMessage(chatId, "inline kbd", {
+        "text": 'send location',
+        "reply_markup": {
+            "keyboard": [
+                [{
+                    "text": "Send Location",
+                    "request_location": true
+                }],
+                [{
+                    "text": "Отправить местоположение",
+                    "request_location": true
+                }],
+                [{
+                    "text": "Trimiteți locația",
+                    "request_location": true
+                }]
+            ]
+        },
+        });
+        
     }
 }
 
