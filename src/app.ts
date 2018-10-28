@@ -2,10 +2,12 @@ import * as TelegramBot from "node-telegram-bot-api";
 import TelegramService from "./services/tg.service";
 import TextControllersHanlder from "./controllers/text.controllers";
 import CacheService from "./services/cache.service";
+import RadarService from "./services/radar.service";
 
 //get Token
 const tService = new TelegramService();
 const CS = new CacheService();
+const RS = new RadarService();
 
 tService.setTelegramTokenFromEnv();
 
@@ -30,6 +32,15 @@ bot.on("location", async msg => {
             callback_data: JSON.stringify({
               add: true,
               km: null
+            })
+          }
+        ],
+        [
+          {
+            text: "Показать инфо о потралу в радиусе 10км",
+            callback_data: JSON.stringify({
+              add: false,
+              km: 10
             })
           }
         ],
@@ -77,15 +88,26 @@ bot.on("location", async msg => {
 bot.on("callback_query", async callbackQuery => {
   const { from } = callbackQuery;
   let data = JSON.parse(callbackQuery.data);
-  console.log(data);
   let fromCache = await CS.getValue(from.id);
+  const userLocationData = JSON.parse(fromCache.data.data);
+
   if (fromCache.error) {
     bot.sendMessage(from.id, "Действие следует выбирать в течении 60 мин");
     return;
   }
   if (data.add) {
+    await RS.createRadarPoint(
+      userLocationData.latitude,
+      userLocationData.longitude
+    );
+    bot.sendMessage(from.id, "ответ сохранен");
+    return;
   }
-  const userLocationData = JSON.parse(fromCache.data.data);
-  console.log(userLocationData);
-  bot.sendMessage(from.id, "Sa buded");
+
+  const linkG = await RS.getRadarPoint(
+    userLocationData.latitude,
+    userLocationData.longitude,
+    data.km
+  );
+  bot.sendPhoto(from.id, linkG);
 });
