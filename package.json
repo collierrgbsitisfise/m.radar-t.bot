@@ -19,7 +19,11 @@
   },
   "dependencies": {
     "@types/node-telegram-bot-api": "^0.30.3",
+    "@types/request": "^2.48.0",
+    "@types/request-promise": "^4.1.42",
     "concurrently": "^4.0.1",
-    "node-telegram-bot-api": "^0.30.0"
+    "node-telegram-bot-api": "^0.30.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   }
 }

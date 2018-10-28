@@ -10,7 +10,7 @@ class InlineQueryControllersHanlder {
     this.bot.sendMessage(chatId, "pong");
   }
 
-  inlineQueryHandler(msg) {
+  inlineQueryHandler(msg: any) {
     // this.bot.answerInlineQuery(
     //   id,
     //   [
