@@ -7,8 +7,7 @@ class TextControllersHanlder {
 
   async pingHandler(msg: any): Promise<any> {
     const chatId = msg.chat.id;
-    await this.bot.sendMessage(chatId, "pong");
-    await this.bot.sendMessage(chatId, "inline kbd", {
+    await this.bot.sendMessage(chatId, "Действуй", {
       text: "send location",
       reply_markup: {
         keyboard: [

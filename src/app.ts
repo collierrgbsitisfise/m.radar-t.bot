@@ -19,6 +19,17 @@ const textControllers = new TextControllersHanlder(bot);
 
 bot.onText(/\/ping/, msg => textControllers.pingHandler(msg));
 
+bot.onText(/\/start/, async msg => {
+  const chatId = msg.chat.id;
+  await bot.sendMessage(
+    chatId,
+    `Вас приветствует 👋 👋 👋  бот @mRadarMoldovaBot.Вы можете отправить свое место положения 🚩🚩🚩 📢📢📢:\n
+      1)Сообщать о потруле 🗣🗣🗣 🚓🚓🚓 \n 
+      2)Узнать о потруле в интересуемом от Вас радиусе 👀👀 \n`
+  );
+  await textControllers.pingHandler(msg);
+});
+
 bot.on("location", async msg => {
   const { latitude, longitude } = msg.location;
   const chatId = msg.chat.id;
@@ -37,7 +48,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать инфо о потралу в радиусе 10км",
+            text: "Показать информацию в радиусе 10км",
             callback_data: JSON.stringify({
               add: false,
               km: 10
@@ -46,7 +57,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать инфо о потралу в радиусе 20км",
+            text: "Показать информацию в радиусе 20км",
             callback_data: JSON.stringify({
               add: false,
               km: 20
@@ -55,7 +66,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать инфо о потралу в радиусе 40км",
+            text: "Показать информацию в радиусе 40км",
             callback_data: JSON.stringify({
               add: false,
               km: 40
@@ -64,7 +75,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать инфо о потралу в радиусе 60км",
+            text: "Показать информацию в радиусе 60км",
             callback_data: JSON.stringify({
               add: false,
               km: 60
@@ -73,7 +84,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать инфо о потралу в радиусе 80км",
+            text: "Показать информацию в радиусе 80км",
             callback_data: JSON.stringify({
               add: false,
               km: 80
