@@ -48,7 +48,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать информацию в радиусе 10км",
+            text: "Показать информацию в радиусе 2км",
             callback_data: JSON.stringify({
               add: false,
               km: 2
@@ -57,7 +57,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать информацию в радиусе 20км",
+            text: "Показать информацию в радиусе 5км",
             callback_data: JSON.stringify({
               add: false,
               km: 5
@@ -66,7 +66,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать информацию в радиусе 40км",
+            text: "Показать информацию в радиусе 10км",
             callback_data: JSON.stringify({
               add: false,
               km: 10
@@ -75,7 +75,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать информацию в радиусе 60км",
+            text: "Показать информацию в радиусе 30км",
             callback_data: JSON.stringify({
               add: false,
               km: 30
@@ -84,7 +84,7 @@ bot.on("location", async msg => {
         ],
         [
           {
-            text: "Показать информацию в радиусе 80км",
+            text: "Показать информацию в радиусе 50км",
             callback_data: JSON.stringify({
               add: false,
               km: 50
