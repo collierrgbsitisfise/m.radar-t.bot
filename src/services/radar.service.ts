@@ -6,12 +6,13 @@ class RadarService {
   public async createRadarPoint(
     latitude: string | number,
     longitude: string | number,
+    typePoint: string,
     informator: string = "anonim"
   ) {
     const options = {
       method: "POST",
       uri: `${this.radarHost}/radar-point`,
-      body: { latitude, longitude, informator },
+      body: { latitude, longitude, typePoint, informator },
       json: true
     };
 

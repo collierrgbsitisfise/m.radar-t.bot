@@ -42,7 +42,16 @@ bot.on("location", async msg => {
             text: "Сообщить о потруле",
             callback_data: JSON.stringify({
               add: true,
-              km: null
+              type: "patrol"
+            })
+          }
+        ],
+        [
+          {
+            text: "Сообщить о посте",
+            callback_data: JSON.stringify({
+              add: true,
+              type: "policePost"
             })
           }
         ],
@@ -109,7 +118,8 @@ bot.on("callback_query", async callbackQuery => {
   if (data.add) {
     await RS.createRadarPoint(
       userLocationData.latitude,
-      userLocationData.longitude
+      userLocationData.longitude,
+      data.type
     );
     bot.sendMessage(from.id, "ответ сохранен");
     return;
